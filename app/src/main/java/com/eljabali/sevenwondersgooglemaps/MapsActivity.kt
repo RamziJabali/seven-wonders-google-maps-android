@@ -8,11 +8,20 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    private val pyramidsOfGiza = LatLng(29.97730524865085, 31.13249479583215)
+    private val statueOfZeus = LatLng(37.63806220183685, 21.630222000818012)
+    private val hangingGardenOfBabylon: LatLng = LatLng(34.99142465790425, 42.40516143736894)
+
+    private lateinit var pyramidsOfGizaMarker: Marker
+    private lateinit var statueOfZeusMarker: Marker
+    private lateinit var hangingGardenOfBabylonMarker: Marker
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,10 +43,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap.addMarker(MarkerOptions().position(pyramidsOfGiza).title("Pyramids Of Giza"))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(pyramidsOfGiza))
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        pyramidsOfGizaMarker = mMap.addMarker(
+                MarkerOptions()
+                        .position(pyramidsOfGiza)
+                        .title("Pyramids Of Giza")
+        )
+        pyramidsOfGizaMarker.tag = 0
+
+        hangingGardenOfBabylonMarker = mMap.addMarker(
+                MarkerOptions()
+                        .position(hangingGardenOfBabylon)
+                        .title("Hanging Garden of Babylon")
+        )
+        hangingGardenOfBabylonMarker.tag = 0
+
+        statueOfZeusMarker = mMap.addMarker(
+                MarkerOptions()
+                        .position(statueOfZeus)
+                        .title("Statue of Zeus")
+        )
+        statueOfZeusMarker.tag = 0
     }
 }
