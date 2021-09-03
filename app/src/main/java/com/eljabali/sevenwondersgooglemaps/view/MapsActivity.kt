@@ -51,12 +51,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
 
     override fun setNewViewState(viewState: ViewState) {
         viewState.apply {
-            mMap.addMarker(MarkerOptions().position(sevenWonders[currentWonderOfTheWorld].location).title(sevenWonders[currentWonderOfTheWorld].description))
+            mMap.addMarker(MarkerOptions().position(sevenWonders[currentWonderOfTheWorld].location).title(getString(sevenWonders[currentWonderOfTheWorld].description)))
             mMap.moveCamera(CameraUpdateFactory.newLatLng(sevenWonders[currentWonderOfTheWorld].location))
             Picasso.get()
                     .load(sevenWonders[currentWonderOfTheWorld].wonderOfTheWorldImageURL)
                     .into(wonderOfTheWorldImageView)
-            locationTextView.text = sevenWonders[currentWonderOfTheWorld].description
+            locationTextView.text = getString(sevenWonders[currentWonderOfTheWorld].description)
         }
     }
 
@@ -70,9 +70,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
         mapFragment.getMapAsync(this)
         headerArrowImageView.setOnClickListener {
             if (sheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
-                sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED)
             } else {
-                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED)
             }
         }
         sheetBehavior.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {

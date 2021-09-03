@@ -10,7 +10,7 @@ class ViewModel : ViewModel() {
     val viewStateObservable = BehaviorSubject.create<ViewState>()
 
     fun startApp() {
-        viewState = viewState.copy(sevenWonders = SevenWonders.getListOfSevenWonders(), currentWonderOfTheWorld = 0)
+        viewState = viewState.copy(sevenWonders = SevenWonders.values().toList(), currentWonderOfTheWorld = 0)
         invalidateViewState()
     }
 

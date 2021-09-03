@@ -2,4 +2,11 @@
     <string name="app_name">SevenWondersGoogleMaps</string>
     <string name="title_activity_maps">Map</string>
     <string name="location">Location: </string>
+    <string name="pyramids_of_giza">Pyramids Of Giza</string>
+    <string name="statue_of_zeus">Statue Of Zeus</string>
+    <string name="garden_of_babylon">Garden Of Babylon</string>
+    <string name="the_temple_of_artemis">The Temple Of Artemis</string>
+    <string name="mausoleum_at_halicarnassus">Mausoleum at Halicarnassus</string>
+    <string name="colossus_of_rhodes">Colossus Of Rhodes</string>
+    <string name="lighthouse_of_alexandria">Lighthouse Of Alexandria</string>
 </resources>
