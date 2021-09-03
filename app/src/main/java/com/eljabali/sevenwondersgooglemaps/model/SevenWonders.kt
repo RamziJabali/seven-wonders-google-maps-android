@@ -2,7 +2,7 @@ package com.eljabali.sevenwondersgooglemaps.model
 
 import com.google.android.gms.maps.model.LatLng
 
-enum class Mode(val location: LatLng, val description: String) {
+enum class SevenWonders(val location: LatLng, val description: String) {
     pyramidsOfGiza(LatLng(29.97730524865085, 31.13249479583215), "Pyramids Of Giza"),
     statueOfZeus(LatLng(37.63806220183685, 21.630222000818012),"Statue Of Zeus"),
     hangingGardenOfBabylon(LatLng(34.99142465790425, 42.40516143736894), "Hanging Garden Of Babylon"),
