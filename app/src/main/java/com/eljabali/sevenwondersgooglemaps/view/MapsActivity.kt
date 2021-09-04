@@ -51,8 +51,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
 
     override fun setNewViewState(viewState: ViewState) {
         viewState.apply {
-            mMap.addMarker(MarkerOptions().position(sevenWonders[currentWonderOfTheWorld].location).title(getString(sevenWonders[currentWonderOfTheWorld].description)))
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(sevenWonders[currentWonderOfTheWorld].location))
+//            mMap.addMarker(MarkerOptions().position(sevenWonders[currentWonderOfTheWorld].location).title(getString(sevenWonders[currentWonderOfTheWorld].description)))
+            mMap.animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(sevenWonders[currentWonderOfTheWorld].location,18F)
+            )
             Picasso.get()
                     .load(sevenWonders[currentWonderOfTheWorld].wonderOfTheWorldImageURL)
                     .into(wonderOfTheWorldImageView)
