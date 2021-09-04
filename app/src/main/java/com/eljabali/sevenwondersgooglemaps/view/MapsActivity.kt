@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.view.WindowCompat
 import com.eljabali.sevenwondersgooglemaps.R
 import com.eljabali.sevenwondersgooglemaps.viewmodel.ViewModel
 import com.eljabali.sevenwondersgooglemaps.viewmodel.ViewState
@@ -13,8 +14,8 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -32,6 +33,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
     private val headerArrowImageView: ImageView by lazy { findViewById(R.id.expandMinimizeBottomSheet) }
     private val wonderOfTheWorldImageView: ImageView by lazy { findViewById(R.id.expandedImageView) }
     private val locationTextView: TextView by lazy { findViewById(R.id.minimizedTextView) }
+    private val locationDescriptionTextView: TextView by lazy { findViewById(R.id.description) }
 
     private lateinit var mMap: GoogleMap
 
@@ -39,6 +41,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setup()
         compositeDisposable.add(viewModel.viewStateObservable
                 .subscribeOn(Schedulers.io())
@@ -51,14 +54,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
 
     override fun setNewViewState(viewState: ViewState) {
         viewState.apply {
-//            mMap.addMarker(MarkerOptions().position(sevenWonders[currentWonderOfTheWorld].location).title(getString(sevenWonders[currentWonderOfTheWorld].description)))
-            mMap.animateCamera(
-                    CameraUpdateFactory.newLatLngZoom(sevenWonders[currentWonderOfTheWorld].location,18F)
-            )
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sevenWonders[currentWonderOfTheWorld].location, 16F))
             Picasso.get()
                     .load(sevenWonders[currentWonderOfTheWorld].wonderOfTheWorldImageURL)
                     .into(wonderOfTheWorldImageView)
-            locationTextView.text = getString(sevenWonders[currentWonderOfTheWorld].description)
+            locationTextView.text = getString(sevenWonders[currentWonderOfTheWorld].locationName)
+            locationDescriptionTextView.text = getString(sevenWonders[currentWonderOfTheWorld].description)
         }
     }
 

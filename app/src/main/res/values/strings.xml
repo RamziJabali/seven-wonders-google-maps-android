@@ -9,4 +9,13 @@
     <string name="mausoleum_at_halicarnassus">Mausoleum at Halicarnassus</string>
     <string name="colossus_of_rhodes">Colossus Of Rhodes</string>
     <string name="lighthouse_of_alexandria">Lighthouse Of Alexandria</string>
+    <string name="pyramids_of_giza_description">The Giza Pyramid Complex, also called the Giza Necropolis, is the site on the Giza Plateau in Greater Cairo, Egypt that includes the Great Pyramid of Giza, the Pyramid of Khafre, and the Pyramid of Menkaure, along with their associated pyramid complexes and the Great Sphinx of Giza.</string>
+    <string name="statue_of_zeus_description">The Statue of Zeus at Olympia was a giant seated figure, about 12.4 m tall, made by the Greek sculptor Phidias around 435 BC at the sanctuary of Olympia, Greece, and erected in the Temple of Zeus there.</string>
+    <string name="garden_of_babylon_description"> They were described as a remarkable feat of engineering with an ascending series of tiered gardens containing a wide variety of trees, shrubs, and vines, resembling a large green mountain constructed of mud bricks.</string>
+    <string name="the_temple_of_artemis_description">The Temple of Artemis or Artemision, also known as the Temple of Diana, was a Greek temple dedicated to an ancient, local form of the goddess Artemis. It was located in Ephesus.</string>
+    <string name="mausoleum_at_halicarnassus_description">The Mausoleum at Halicarnassus or Tomb of Mausolus was a tomb built between 353 and 350 BC in Halicarnassus for Mausolus, a native Anatolian from Caria and a satrap in the Achaemenid Empire, and his sister-wife Artemisia II of Caria.</string>
+    <string name="colossus_of_rhodes_description">The Colossus of Rhodes was a statue of the Greek sun-god Helios, erected in the city of Rhodes, on the Greek island of the same name, by Chares of Lindos in 280 BC. </string>
+    <string name="lighthouse_of_alexandria_description">The Lighthouse of Alexandria, sometimes called the Pharos of Alexandria, was a lighthouse built by the Ptolemaic Kingdom of Ancient Egypt, during the reign of Ptolemy II Philadelphus. It has been estimated to have been at least 100 metres in overall height.</string>
+    <string name="minus">minus</string>
+    <string name="plus">plus</string>
 </resources>
