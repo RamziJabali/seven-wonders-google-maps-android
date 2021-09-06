@@ -15,13 +15,17 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
+
+
+    companion object {
+        private const val ZOOM_LEVEL = 16F
+    }
 
     private val viewModel by lazy { ViewModel() }
     private val compositeDisposable = CompositeDisposable()
@@ -35,8 +39,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
     private val locationTextView: TextView by lazy { findViewById(R.id.minimizedTextView) }
     private val locationDescriptionTextView: TextView by lazy { findViewById(R.id.description) }
 
-    private lateinit var mMap: GoogleMap
-
+    private lateinit var map: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,32 +47,33 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setup()
         compositeDisposable.add(viewModel.viewStateObservable
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { viewState ->
-                    setNewViewState(viewState)
-                })
-        viewModel.startApp()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { viewState ->
+                setNewViewState(viewState)
+            })
+        viewModel.onAppStart()
     }
 
     override fun setNewViewState(viewState: ViewState) {
         viewState.apply {
-            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sevenWonders[currentWonderOfTheWorld].location, 16F))
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(sevenWonders[currentWonderOfTheWorld].location,ZOOM_LEVEL))
             Picasso.get()
-                    .load(sevenWonders[currentWonderOfTheWorld].wonderOfTheWorldImageURL)
-                    .into(wonderOfTheWorldImageView)
+                .load(sevenWonders[currentWonderOfTheWorld].wonderOfTheWorldImageURL)
+                .into(wonderOfTheWorldImageView)
             locationTextView.text = getString(sevenWonders[currentWonderOfTheWorld].locationName)
-            locationDescriptionTextView.text = getString(sevenWonders[currentWonderOfTheWorld].description)
+            locationDescriptionTextView.text =
+                getString(sevenWonders[currentWonderOfTheWorld].description)
         }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
+        map = googleMap
     }
 
     private fun setup() {
         val mapFragment = supportFragmentManager
-                .findFragmentById(R.id.map) as SupportMapFragment
+            .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
         headerArrowImageView.setOnClickListener {
             if (sheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
@@ -88,10 +92,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, ViewListener {
             }
         })
         rightArrowImageView.setOnClickListener {
-            viewModel.rightClick()
+            viewModel.onRightClick()
         }
         leftArrowImageView.setOnClickListener {
-            viewModel.leftClick()
+            viewModel.onLeftClick()
         }
     }
 }

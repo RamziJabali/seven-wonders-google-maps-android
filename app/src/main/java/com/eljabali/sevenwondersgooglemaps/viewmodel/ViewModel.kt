@@ -9,13 +9,16 @@ class ViewModel : ViewModel() {
 
     val viewStateObservable = BehaviorSubject.create<ViewState>()
 
-    fun startApp() {
-        viewState = viewState.copy(sevenWonders = SevenWonders.values().toList(), currentWonderOfTheWorld = 0)
+    fun onAppStart() {
+        viewState = viewState.copy(
+            sevenWonders = SevenWonders.values().toList(),
+            currentWonderOfTheWorld = 0
+        )
         invalidateViewState()
     }
 
-    fun rightClick() {
-        viewState = if (viewState.currentWonderOfTheWorld == 6) {
+    fun onRightClick() {
+        viewState = if (viewState.currentWonderOfTheWorld == viewState.sevenWonders.size - 1) {
             viewState.copy(currentWonderOfTheWorld = 0)
         } else {
             viewState.copy(currentWonderOfTheWorld = viewState.currentWonderOfTheWorld + 1)
@@ -23,9 +26,9 @@ class ViewModel : ViewModel() {
         invalidateViewState()
     }
 
-    fun leftClick() {
+    fun onLeftClick() {
         viewState = if (viewState.currentWonderOfTheWorld == 0) {
-            viewState.copy(currentWonderOfTheWorld = 6)
+            viewState.copy(currentWonderOfTheWorld = viewState.sevenWonders.size - 1)
         } else {
             viewState.copy(currentWonderOfTheWorld = viewState.currentWonderOfTheWorld - 1)
         }
